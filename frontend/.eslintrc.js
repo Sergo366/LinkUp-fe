@@ -1,25 +1,18 @@
 module.exports = {
-	parser: 'babel-eslint',
-	env: {
-		browser: true,
-		es6: true,
-		node: true,
+	'env': {
+		'browser': true,
+		'es2021': true,
 	},
-	extends: ['eslint:recommended', 'plugin:react/recommended'],
-	parserOptions: {
-		ecmaFeatures: {
-			jsx: true,
+	'extends': ['eslint:recommended', 'plugin:react/recommended', 'plugin:react-hooks/recommended'],
+	'parserOptions': {
+		'ecmaVersion': 12,
+		'sourceType': 'module',
+		'ecmaFeatures': {
+			'jsx': true,
 		},
-		ecmaVersion: 2018,
-		sourceType: 'module',
 	},
-	plugins: ['react', 'jsx-a11y', 'import'],
-	rules: {
-		// Add your specific rules here
-	},
-	settings: {
-		react: {
-			version: 'detect',
-		},
+	'plugins': ['react', 'react-hooks'],
+	'rules': {
+		//add customize rules here as per your project's needs
 	},
 };
