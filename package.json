@@ -1,12 +1,7 @@
 {
-  "name": "react-micro-frontend-example",
+  "name": "link-up",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "host",
-      "remote"
-    ]
-  },
+  "workspaces":  ["modules/*"] ,
   "scripts": {
     "start": "npm run start:host & npm run start:remote",
     "start:host": "cd ./modules/container && npm start",
