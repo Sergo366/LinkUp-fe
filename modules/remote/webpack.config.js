@@ -1,30 +1,32 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-const path = require("path");
 const { dependencies } = require("./package.json");
 
 module.exports = {
-  entry: "./src/index",
+  entry: "./src/index.ts",
   mode: "development",
   devServer: {
-    static: {
-      directory: path.join(__dirname, "public"),
-    },
     port: 4000,
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)?$/,
+        test: /\.tsx?$/,
+        use: 'ts-loader',
         exclude: /node_modules/,
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              presets: ["@babel/preset-env", "@babel/preset-react"],
-            },
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-react',
+              '@babel/preset-typescript',
+            ],
           },
-        ],
+        },
       },
     ],
   },
@@ -37,7 +39,6 @@ module.exports = {
         "./Button": "./src/Button",
       },
       shared: {
-        ...dependencies,
         react: {
           singleton: true,
           requiredVersion: dependencies["react"],
@@ -48,9 +49,8 @@ module.exports = {
         },
         'react-router-dom': {
           singleton: true,
-          eager: true,
-          requiredVersion: dependencies['react-router-dom']
-        }
+          requiredVersion: dependencies['react-router-dom'],
+        },
       },
     }),
     new HtmlWebpackPlugin({
@@ -58,7 +58,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   target: "web",
 };

@@ -1,16 +1,15 @@
-import React from "react";
-import ErrorBoundary from "./ErrorBoundary";
+import React, {FC} from "react";
 const RemoteApp = React.lazy(() => import("Remote/App"));
 const RemoteButton = React.lazy(() => import("Remote/Button"));
 
-const RemoteWrapper = ({ children }) => (
+const RemoteWrapper:FC<{children: React.ReactNode}> = ({ children }) => (
   <div
     style={{
       border: "1px solid red",
       background: "white",
     }}
   >
-    <ErrorBoundary>{children}</ErrorBoundary>
+    {children}
   </div>
 );
 
