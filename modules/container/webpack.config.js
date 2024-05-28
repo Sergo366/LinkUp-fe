@@ -1,6 +1,6 @@
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import ModuleFederationPlugin from "webpack/lib/container/ModuleFederationPlugin"
-import { dependencies } from "./package.json";
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin")
+const { dependencies } = require( "./package.json");
 
 module.exports = {
   entry: "./src/index.ts",
